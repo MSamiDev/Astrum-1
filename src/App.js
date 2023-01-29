@@ -23,6 +23,9 @@ import StatsUpdate from "./pages/StatsUpdate";
 import Map from "./pages/map";
 import NasaMap from "./pages/nasaMaps";
 import axios from "axios";
+import AlertCreate from "./pages/AlertCreate";
+import AlertScreen from "./pages/AlertScreen";
+import Astra from "./partials/Astra";
 
 function App() {
   const location = useLocation();
@@ -49,7 +52,7 @@ function App() {
       const res = await axios.get(
         "https://eonet.gsfc.nasa.gov/api/v2.1/events?limit=100"
       );
-      console.log(res.data.events);
+      // console.log(res.data.events);
       let temp = [];
       temp = [];
       for (let i = 0; i < res.data.events.length; i++) {
@@ -99,8 +102,17 @@ function App() {
         <Route path="/map/:type">
           <Map />
         </Route>
+        <Route path="/createalert">
+          <AlertCreate />
+        </Route>
+        <Route path="/news">
+          <AlertScreen />
+        </Route>
         <Route path="/nasamap">
           <NasaMap eventData={eventData} />
+        </Route>
+        <Route path="/astra">
+          <Astra />
         </Route>
       </Switch>
     </>
